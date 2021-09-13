@@ -1,11 +1,11 @@
 package comcave;
 
-public class Artikel 
+public class Artikel
 {
 	private String bezeichnung;
 	private double preis;
 	private int anzahl;
-	
+
 	public Artikel(String bezeichnung, double preis, int anzahl)
 	{
 		this.bezeichnung = bezeichnung;
@@ -36,5 +36,5 @@ public class Artikel
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
-	
+
 }
