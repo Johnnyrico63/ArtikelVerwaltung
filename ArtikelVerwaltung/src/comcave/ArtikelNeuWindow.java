@@ -22,7 +22,7 @@ public class ArtikelNeuWindow extends JFrame
 	public ArtikelNeuWindow()
 	{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);//Disponse on close - nur das sub-Fenster wird geschlossen
-		setSize(600, 500);
+		setSize(450, 200);
 		
 		contentPane = new JPanel();
 		setContentPane(contentPane);
@@ -46,13 +46,13 @@ public class ArtikelNeuWindow extends JFrame
 		contentPane.add(tfAnzahl);
 		contentPane.add(btnSpeichern);
 		
-		lblBezeichnung.setBounds(20, 20, 100, 25);
-		lblPreis.setBounds(20, 55, 100, 25);
-		lblAnzahl.setBounds(20, 90, 100, 25);
-		tfBezeichnung.setBounds(130, 20, 150, 25);
-		tfPreis.setBounds(130, 55, 100, 25);
-		tfAnzahl.setBounds(130, 90, 100, 25);
-		btnSpeichern.setBounds(120, 125, 100, 25);
+		lblBezeichnung.setBounds(20, 20, 150, 25);
+		lblPreis.setBounds(20, 55, 150, 25);
+		lblAnzahl.setBounds(20, 90, 150, 25);
+		tfBezeichnung.setBounds(180, 20, 250, 25);
+		tfPreis.setBounds(180, 55, 250, 25);
+		tfAnzahl.setBounds(180, 90, 250, 25);
+		btnSpeichern.setBounds(120, 125, 150, 25);
 		
 		Font font = new Font("Calibri", Font.BOLD, 16);
 		

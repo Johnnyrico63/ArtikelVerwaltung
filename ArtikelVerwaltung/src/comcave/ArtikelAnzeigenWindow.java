@@ -34,12 +34,25 @@ public class ArtikelAnzeigenWindow extends JFrame
 		
 		// JTable mit Daten fuellen
 		ArrayList<Artikel> artikelListe = Datenbank.artikelAbrufen();
-		// 1 Vector fuer Spalten-Ueberschriften
+		// 1. Vector fuer Spalten-Ueberschriften
 		Vector<String> kopf = new Vector<String>();
 		kopf.add("Bezeichnung");
 		kopf.add("Preis");
 		kopf.add("Anzahl");
 		
+		// 2. Vector fur Daten
+		Vector<Vector<String>> daten = new Vector<Vector<String>>();
+		
+		for(Artikel artikel : artikelListe)
+		{
+			Vector zeile = new Vector<String>();
+			zeile.add(artikel.getBezeichnung());
+			zeile.add(Double.toString(artikel.getPreis()));
+			zeile.add(Integer.toString(artikel.getAnzahl()));
+			daten.add(zeile);
+		}
+		model = new DefaultTableModel(daten, kopf);
+		table.setModel(model);
 		//Test
 //		for( Artikel artikel : artikelListe)
 //		{
