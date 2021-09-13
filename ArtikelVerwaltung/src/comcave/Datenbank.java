@@ -1,15 +1,15 @@
 package comcave;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.*;
 import java.util.ArrayList;
 
 public class Datenbank
 {
 	public static void artikelSpeichern(Artikel artikel)
 	{
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
 		try
 		{
 			String conString = "jdbc:mysql://localhost/javadb";
@@ -17,7 +17,11 @@ public class Datenbank
 			String password = "muster";
 			Connection con = DriverManager.getConnection(conString, user, password);
 			Statement stat = con.createStatement();
-			String sqlString = "INSERT INTO artikel(bezeichnung, preis, anzahl) VALUES('" + artikel.getBezeichnung() + "', " + artikel.getPreis() + ", " + artikel.getAnzahl() + ");";
+			String sqlString = "INSERT INTO artikel(bezeichnung, preis, anzahl, datum)" 
+											+ " VALUES('" 	+ artikel.getBezeichnung() + "','" 
+															+ artikel.getPreis() + "','" 
+															+ artikel.getAnzahl() + "','" 
+															+ df.format(artikel.getDatum()) + "');";
 			System.out.println(sqlString);
 			stat.execute(sqlString);
 
@@ -51,11 +55,11 @@ public class Datenbank
 			Statement stat = con.createStatement();
 
 			//Daten abrufen
-			String sqlString = "SELECT bezeichnung, preis, anzahl FROM artikel;";
+			String sqlString = "SELECT bezeichnung, preis, anzahl, datum FROM artikel;";
 			ResultSet rs = stat.executeQuery(sqlString);
 			while(rs.next())
 			{
-				artikelListe.add(new Artikel(rs.getString(1) , rs.getDouble(2) , rs.getInt(3)));
+				artikelListe.add(new Artikel(rs.getString(1) , rs.getDouble(2) , rs.getInt(3), rs.getDate(4)));
 			}
 
 			con.close();
