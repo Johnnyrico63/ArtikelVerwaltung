@@ -23,34 +23,11 @@ public class ButtonClick implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String bez = w.tfBezeichnung.getText();
-		String preis = w.tfPreis.getText();
-		String anz = w.tfAnzahl.getText();
+		double preis = Double.parseDouble(w.tfPreis.getText());
+		int anz = Integer.parseInt(w.tfAnzahl.getText());
 		
-		try 
-		{
-			String conString = "jdbc:mysql://localhost/javadb";
-			String user = "muster";
-			String password = "muster";
-			Connection con = DriverManager.getConnection(conString, user, password);
-			Statement stat = con.createStatement();
-			String sqlString = "INSERT INTO artikel(bezeichnung, preis, anzahl) VALUES('" + bez + "', " + preis + ", " + anz + ");";
-			System.out.println(sqlString);
-			stat.execute(sqlString);
-			
-			// Alle Artikeldaten abrufen
-			sqlString = "SELECT * FROM artikel;";
-			ResultSet rs = stat.executeQuery(sqlString);
-			while(rs.next())
-			{
-				System.out.println(rs.getInt(1) + rs.getString(2) + rs.getDouble(3) + rs.getInt(4));
-			}
-			
-			
-			con.close();
-		} 
-		catch (Exception e2) 
-		{
-			e2.printStackTrace();
-		}
+		Artikel artikel = new Artikel(bez, preis, anz);
+		//Datenbank datenbank = new Datenbank();
+		Datenbank.artikelSpeichern(artikel);
 	}
 }
