@@ -1,6 +1,8 @@
 package comcave;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +30,20 @@ public class ArtikelAnzeigenWindow extends JFrame
 		
 		contentPane.add(scrollPane);
 		
-		scrollPane.setBounds(20, 20, 560, 460);
+		scrollPane.setBounds(20, 20, 560, 420);
+		
+		// JTable mit Daten fuellen
+		ArrayList<Artikel> artikelListe = Datenbank.artikelAbrufen();
+		// 1 Vector fuer Spalten-Ueberschriften
+		Vector<String> kopf = new Vector<String>();
+		kopf.add("Bezeichnung");
+		kopf.add("Preis");
+		kopf.add("Anzahl");
+		
+		//Test
+//		for( Artikel artikel : artikelListe)
+//		{
+//			System.out.println(artikel.getBezeichnung());
+//		}
 	}
 }
